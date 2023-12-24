@@ -16,8 +16,8 @@ const menuItem = [
     },
     {
         icon: <IoCheckboxOutline />,
-        title: 'Info',
-        path: '/dashboard/info',
+        title: 'Tasks',
+        path: '/dashboard/tasks',
     },
     {
         icon: <IoListCircleOutline />,

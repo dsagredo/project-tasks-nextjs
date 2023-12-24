@@ -7,7 +7,7 @@ export const metadata = {
     description: 'SEO Title',
 };
 
-export default async function InfoPage(): Promise<JSX.Element> {
+export default async function TasksPage(): Promise<JSX.Element> {
     const tasks = await prisma.tasks.findMany({
         orderBy: { description: 'asc' },
     });

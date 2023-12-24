@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: { domains: ['tailus.io'], formats: ['image/webp'] },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'tailus.io',
+            },
+        ],
+    },
 };
 
 module.exports = nextConfig;
