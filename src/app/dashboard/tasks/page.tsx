@@ -3,7 +3,7 @@ import { Girds } from '@/components/Girds';
 import prisma from '@/lib/prisma';
 
 export const metadata = {
-    title: 'Listado de Todos',
+    title: 'Lists Tasks',
     description: 'SEO Title',
 };
 

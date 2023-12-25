@@ -3,7 +3,7 @@ version: '3'
 services:
     db:
         image: postgres:15.3
-        container_name: admin-db
+        container_name: tools-db
         restart: always
         ports:
             - 5432:5432

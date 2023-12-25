@@ -5,6 +5,7 @@ import { SidebarItem } from './SidebarItem';
 import {
     IoCalendarOutline,
     IoCheckboxOutline,
+    IoCodeWorkingOutline,
     IoListCircleOutline,
 } from 'react-icons/io5';
 
@@ -23,6 +24,11 @@ const menuItem = [
         icon: <IoListCircleOutline />,
         title: 'Server Actions',
         path: '/server-actions',
+    },
+    {
+        icon: <IoCodeWorkingOutline />,
+        title: 'Cookies',
+        path: '/dashboard/cookies',
     },
 ];
 
