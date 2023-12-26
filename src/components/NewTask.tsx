@@ -3,13 +3,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import * as api from '@/helpers/tasks';
 import { IoTrashOutline } from 'react-icons/io5';
-import { useAtomValue } from 'jotai';
-import atomId from '@/store/id';
 import { useRouter } from 'next/navigation';
 
 export const NewTask = (): JSX.Element => {
     const router = useRouter();
-    const id = useAtomValue(atomId);
     const [description, setDescription] = useState('');
 
     const onSubmit = (e: FormEvent): void => {
