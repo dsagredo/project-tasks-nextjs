@@ -19,7 +19,12 @@ docker compose up -d
     npx prisma generate
 ```
 
-7i. Ejecutar el SEED para localhost:3000/api/seed
+7. Ejecutar el SEED para localhost:3000/api/seed
+
+## Nota: Usuario por defecto
+
+**email** : demo@example.com
+**contraseña** : 123456
 
 # Prisma commnads
 

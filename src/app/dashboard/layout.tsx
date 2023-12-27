@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { cookies } from 'next/headers';
 import { Menu, Sidebar } from '@/components';
+import { useSession } from 'next-auth/react';
 
 export default function DashboardLayout({
     children,
