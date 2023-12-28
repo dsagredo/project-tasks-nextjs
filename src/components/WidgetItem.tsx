@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface WidgetT {
-    title: string;
+    title?: string;
     children: ReactNode;
 }
 

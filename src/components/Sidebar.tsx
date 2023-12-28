@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { SidebarItem } from './SidebarItem';
 import {
@@ -6,8 +5,6 @@ import {
     IoCalendarOutline,
     IoCheckboxOutline,
     IoCodeWorkingOutline,
-    IoListCircleOutline,
-    IoPersonOutline,
 } from 'react-icons/io5';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
@@ -25,11 +22,6 @@ const menuItem = [
         path: '/dashboard/tasks',
     },
     {
-        icon: <IoListCircleOutline />,
-        title: 'Server Actions',
-        path: '/server-actions',
-    },
-    {
         icon: <IoCodeWorkingOutline />,
         title: 'Cookies',
         path: '/dashboard/cookies',
@@ -39,11 +31,6 @@ const menuItem = [
         title: 'Products',
         path: '/dashboard/products',
     },
-    {
-        icon: <IoPersonOutline />,
-        title: 'Perfil',
-        path: '/dashboard/profile',
-    },
 ];
 
 export const Sidebar = async () => {
@@ -51,7 +38,7 @@ export const Sidebar = async () => {
 
     const avatar: string | undefined = session?.user?.image
         ? session?.user?.image
-        : '';
+        : '/images/user.png';
 
     const name: string | undefined = session?.user?.name ?? '';
 
@@ -60,19 +47,6 @@ export const Sidebar = async () => {
     return (
         <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
             <div>
-                <div className="-mx-6 px-6 py-4">
-                    <Link href="#" title="home">
-                        <Image
-                            src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
-                            className="w-32"
-                            alt={name}
-                            width={150}
-                            height={150}
-                            priority
-                        />
-                    </Link>
-                </div>
-
                 <div className="mt-8 text-center">
                     <Image
                         src={avatar}
@@ -89,14 +63,12 @@ export const Sidebar = async () => {
                         {userRoles}
                     </span>
                 </div>
-
                 <ul className="space-y-2 tracking-wide mt-8">
                     {menuItem.map((item, index: number) => (
                         <SidebarItem key={index} {...item} />
                     ))}
                 </ul>
             </div>
-
             <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
                 <Button />
             </div>

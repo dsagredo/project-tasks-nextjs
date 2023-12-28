@@ -9,10 +9,10 @@ export const NewTask = (): JSX.Element => {
     const router = useRouter();
     const [description, setDescription] = useState('');
 
-    const onSubmit = (e: FormEvent): void => {
+    const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (description.trim().length === 0) return;
-        api.createTask(description);
+        await api.createTask(description);
         setDescription('');
         router.refresh();
     };

@@ -1,6 +1,8 @@
 import { NewTask } from '@/components/NewTask';
 import { Girds } from '@/components/Girds';
 import prisma from '@/lib/prisma';
+import { getUserSession } from '@/actions/auth';
+import { redirect } from 'next/navigation';
 
 export const metadata = {
     title: 'Lists Tasks',
@@ -8,7 +10,11 @@ export const metadata = {
 };
 
 export default async function TasksPage(): Promise<JSX.Element> {
+    const user = await getUserSession();
+    if (!user) redirect('/api/auth/signin');
+
     const tasks = await prisma.tasks.findMany({
+        where: { userId: user.id },
         orderBy: { description: 'asc' },
     });
 

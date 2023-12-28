@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import postSchema from '@/app/validations/postSchema';
+import { getUserSession } from '@/actions/auth';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -30,17 +31,23 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+    const user = await getUserSession();
+    if (!user) {
+        return NextResponse.json('No autorizado', { status: 401 });
+    }
+
     try {
         const { complete, description } = await postSchema.validate(
             await request.json()
         );
+
         const data = await prisma.tasks.create({
             data: {
                 description,
                 complete,
+                userId: user.id,
             },
         });
-
         return NextResponse.json(data);
     } catch (error) {
         return NextResponse.json(error, { status: 400 });

@@ -26,7 +26,6 @@ export const Card = ({ product, quantity }: CartT): JSX.Element => {
 
     return (
         <div className="flex items-center shadow rounded-lg w-full bg-gray-800 border-gray-100">
-            {/* Product Image */}
             <div className="p-2">
                 <Image
                     width={200}
@@ -36,7 +35,6 @@ export const Card = ({ product, quantity }: CartT): JSX.Element => {
                     alt={product.name}
                 />
             </div>
-            {/* Title */}
             <div className="px-5 pb-5 w-full flex flex-col mt-2">
                 <a href="#">
                     <h3 className="font-semibold text-xl tracking-tight text-white">
@@ -46,8 +44,6 @@ export const Card = ({ product, quantity }: CartT): JSX.Element => {
                         </small>
                     </h3>
                 </a>
-
-                {/* Price and Add to Cart */}
                 <div className="flex flex-col items-start justify-between">
                     <span className="text-gray-900 dark:text-white">
                         Cantidad: {quantity}

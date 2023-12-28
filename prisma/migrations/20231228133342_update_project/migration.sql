@@ -17,6 +17,7 @@ CREATE TABLE "tasks" (
     "complete" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
 
     CONSTRAINT "tasks_pkey" PRIMARY KEY ("id")
 );
@@ -55,7 +56,7 @@ CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "password" TEXT,
-    "roles" TEXT[] DEFAULT ARRAY['user']::TEXT[],
+    "roles" TEXT[] DEFAULT ARRAY['member']::TEXT[],
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
@@ -85,6 +86,9 @@ CREATE UNIQUE INDEX "verificationToken_token_key" ON "verificationToken"("token"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "verificationToken_identifier_token_key" ON "verificationToken"("identifier", "token");
+
+-- AddForeignKey
+ALTER TABLE "tasks" ADD CONSTRAINT "tasks_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

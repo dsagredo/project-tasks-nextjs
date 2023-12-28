@@ -1,11 +1,12 @@
 'use client';
 
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 import { CiLogout } from 'react-icons/ci';
 import { IoShieldOutline } from 'react-icons/io5';
 
 export const Button = (): JSX.Element => {
-    const { data, status } = useSession();
+    const { status } = useSession();
 
     if (status === 'loading') {
         return (
@@ -16,15 +17,7 @@ export const Button = (): JSX.Element => {
         );
     }
     if (status === 'unauthenticated') {
-        return (
-            <button
-                onClick={() => signIn()}
-                className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-            >
-                <CiLogout />
-                <span className="group-hover:text-gray-700">Ingresar</span>
-            </button>
-        );
+        return redirect('/api/auth/signin');
     }
     return (
         <button
