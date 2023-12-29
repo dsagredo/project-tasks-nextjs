@@ -7,8 +7,8 @@ import {
     IoCodeWorkingOutline,
 } from 'react-icons/io5';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { Button } from './Button';
+import authOptions from '@/actions/options';
 
 const menuItem = [
     {

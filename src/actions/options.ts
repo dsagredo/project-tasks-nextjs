@@ -1,0 +1,77 @@
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prisma';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import { Adapter } from 'next-auth/adapters';
+import GithubProvider from 'next-auth/providers/github';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { signInValidate } from '@/actions/auth';
+
+const authOptions: NextAuthOptions = {
+    adapter: PrismaAdapter(prisma) as Adapter,
+    providers: [
+        GithubProvider({
+            clientId: process.env.GITHUB_ID ?? '',
+            clientSecret: process.env.GITHUB_SECRET ?? '',
+        }),
+        CredentialsProvider({
+            name: 'Credentials',
+            credentials: {
+                email: {
+                    label: 'Email',
+                    type: 'email',
+                    placeholder: 'example@gmail.com',
+                },
+                password: {
+                    label: 'Contraseña',
+                    type: 'password',
+                    placeholder: '******',
+                },
+            },
+            async authorize(credentials, req) {
+                const user = await signInValidate(
+                    credentials!.email,
+                    credentials!.password!
+                );
+
+                if (user) {
+                    return user;
+                }
+                return null;
+            },
+        }),
+    ],
+
+    session: {
+        strategy: 'jwt',
+    },
+
+    callbacks: {
+        async signIn({ user, account, profile, email, credentials }) {
+            return true;
+        },
+        async jwt({ token, user, account, profile }) {
+            const dbUser = await prisma.user.findUnique({
+                where: { email: token.email! },
+            });
+
+            if (!dbUser?.isActive) {
+                throw Error('Usuario no está activo');
+            }
+
+            token.roles = dbUser?.roles ?? ['no-roles'];
+            token.id = dbUser?.id ?? 'no-uuid';
+
+            return token;
+        },
+        async session({ session, token, user }) {
+            if (session && session.user) {
+                session.user.roles = token.roles;
+                session.user.id = token.id;
+            }
+            return session;
+        },
+    },
+};
+
+export default authOptions;

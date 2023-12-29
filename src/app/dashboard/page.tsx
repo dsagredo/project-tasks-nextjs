@@ -1,10 +1,10 @@
 import { WidgetItem } from '@/components/WidgetItem';
 import { DateTime } from '@/components/DateTime';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import { getUserSession } from '@/actions/auth';
+import authOptions from '@/actions/options';
 
 export default async function DashboardPage(): Promise<JSX.Element> {
     const session = await getServerSession(authOptions);

@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import authOptions from './options';
 
 export const getUserSession = async () => {
     const session = await getServerSession(authOptions);
