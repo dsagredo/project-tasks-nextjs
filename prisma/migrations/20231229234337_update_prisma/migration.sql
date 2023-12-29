@@ -79,9 +79,6 @@ CREATE UNIQUE INDEX "account_provider_providerAccountId_key" ON "account"("provi
 CREATE UNIQUE INDEX "session_sessionToken_key" ON "session"("sessionToken");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
-
--- CreateIndex
 CREATE UNIQUE INDEX "verificationToken_token_key" ON "verificationToken"("token");
 
 -- CreateIndex
