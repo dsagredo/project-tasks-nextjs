@@ -61,4 +61,5 @@ npx prisma generate
 
 ## Deploy on Vercel
 
-https://project-openjira-nextjs-a7md-r5v53a9nj-dsagredo.vercel.app/
+https://project-tools-nextjs.vercel.app
+
