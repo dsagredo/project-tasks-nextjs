@@ -1,7 +1,6 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
 import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -9,6 +8,7 @@ import { signInValidate } from '@/actions/auth';
 
 const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma) as Adapter,
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID ?? '',
