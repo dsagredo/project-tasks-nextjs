@@ -56,7 +56,9 @@ npx prisma generate
 ```
 
 <p align="center">
-<img width="1728" alt="Captura de pantalla 2023-04-08 a la(s) 22 49 39" src="https://github.com/dsagredo/project-pokemon-nextjs/assets/24228373/49ee4506-6742-4f7d-a83a-9b4411e5f975">
+<img width="1704" alt="Captura de pantalla 2023-12-30 a la(s) 09 48 59" src="https://github.com/dsagredo/project-tools-nextjs/assets/24228373/54b89a15-07ed-468f-9a8e-751a764f51ec">
+<img width="1703" alt="Captura de pantalla 2023-12-30 a la(s) 09 49 31" src="https://github.com/dsagredo/project-tools-nextjs/assets/24228373/2562c720-e79f-46e6-b046-1b19c93fd987">
+<img width="1704" alt="Captura de pantalla 2023-12-30 a la(s) 09 49 15" src="https://github.com/dsagredo/project-tools-nextjs/assets/24228373/b328c1b5-588b-405b-9189-01a052053eb1">
 </p>
 
 ## Deploy on Vercel
